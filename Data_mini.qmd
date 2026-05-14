@@ -1,0 +1,53 @@
+---
+title: "Data Mini"
+format: revealjs
+editor: source
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+
+library(tidyverse)
+
+texas <- read_csv("texasdata.csv")
+texas
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+
+texaswhite <- texas |>
+  filter(race == "white")
+
+ggplot(data = texaswhite, aes(x = student_frac, y = teacher_frac)) +
+  geom_point() +
+  geom_smooth()
+
+
+texasblack <- texas |>
+  filter(race == "Black")
+
+ggplot(data = texasblack, aes(x = student_frac, y = teacher_frac)) +
+  geom_point() +
+  geom_smooth()
+
+
+texashispanic <- texas |>
+  filter(race == "Hispanic")
+
+ggplot(data = texashispanic, aes(x = student_frac, y = teacher_frac)) +
+  geom_point() +
+  geom_smooth()
+
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
